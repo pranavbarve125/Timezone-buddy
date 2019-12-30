@@ -10,7 +10,10 @@ end_24_hours = start_24_hours + datetime.timedelta(hours=4)
 # inputs from various users
 # step1 : number of freezones
 # step2 : taking input for the freezones
-User1 = bro(,'Antarctica/McMurdo')#+13:00
+User1 = bro({
+                [datetime.datetime(), datetime.datetime()]
+            },
+            'Antarctica/McMurdo')#+13:00
 User2 = bro(,'Israel')#+2:00
 User3 = bro(,'Asia/Kolkata')#+5:30
 
