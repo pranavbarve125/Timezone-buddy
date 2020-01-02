@@ -7,7 +7,10 @@ app.config["SECRET_KEY"] = "1737e4b44bd8ec494db26e5724b6e110"
 
 @app.route("/", methods=["POST", "GET"])
 def index():
-    return render_template("index.html", users=4, timeslots=4, timezones=data.timezone_names)
+    if request.method == "POST":
+        return "Works"
+    else:
+        return render_template("index.html", users=4, timeslots=4, timezones=data.timezone_names)
 
 if __name__ == '__main__':
     app.run(debug=True)
