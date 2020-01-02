@@ -5,6 +5,7 @@ class bro:
         self.timeslots = timeslots
         self.timezone = pytz.timezone(timezone)
         self.gmt_timedelta = self.convert_to_GMT()
+        print("User Created successful.")
         #self.nativezonetime = nativezonetime
 
     def set(self, timeslots, timezone):

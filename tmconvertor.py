@@ -5,7 +5,7 @@ import pandas as pd
 # https://www.youtube.com/watch?v=eirjjyP2qcQ
 #process before taking inputs from all the users.
 # step 0: enter a particular set of favourable 24 hours. Those 24 hours will be shown to all the users in native time zones. 
-start_24_hours = datetime.datetime(2019, 12, 2, 13, 00)
+start_24_hours = datetime.datetime(2019, 12, 2, 00, 00)
 end_24_hours = start_24_hours + datetime.timedelta(days=1)
 # bro.start = start_24_hours
 clashes = []
@@ -14,18 +14,33 @@ clashes = []
 # step1 : number of freezones
 # step2 : taking input for the freezones
 User1 = bro([
-                [datetime.datetime(2019, 12, 3, 2, 0), datetime.datetime(2019, 12, 3, 5, 0)]
-                #,[datetime.datetime(2019, 12, 2, 16, 0), datetime.datetime(2019, 12, 2, 19, 0)]
+                [datetime.datetime(2019, 12, 2, 16, 0), datetime.datetime(2019, 12, 2, 18, 0)],
+                [datetime.datetime(2019, 12, 2, 23, 0), datetime.datetime(2019, 12, 3, 5, 0)],
+                [datetime.datetime(2019, 12, 3, 7, 0), datetime.datetime(2019, 12, 3, 10, 0)],
+                [datetime.datetime(2019, 12, 3, 11, 0), datetime.datetime(2019, 12, 3, 12, 0)]
             ], 
-            'Antarctica/McMurdo')#+13:00  GMT : 13:00 to 16:00
+            'Antarctica/McMurdo')#+13:00
 User2 = bro([
-                [datetime.datetime(2019, 12, 2, 16, 0), datetime.datetime(2019, 12, 2, 19, 0)]
+                [datetime.datetime(2019, 12, 2, 13, 0), datetime.datetime(2019, 12, 2, 16, 0)],
+                [datetime.datetime(2019, 12, 2, 17, 0), datetime.datetime(2019, 12, 2, 19, 0)],
+                [datetime.datetime(2019, 12, 2, 2, 0), datetime.datetime(2019, 12, 2, 5, 0)],
+                [datetime.datetime(2019, 12, 2, 9, 0), datetime.datetime(2019, 12, 2, 11, 30)]
             ],
-            'Israel')#+2:00 GMT : 14:00 to 17:00
+            'Israel')#+2:00 GMT : 
 User3 = bro([
-                [datetime.datetime(2019, 12, 2, 17, 30), datetime.datetime(2019, 12, 2, 20, 30)]
+                [datetime.datetime(2019, 12, 2, 10, 30), datetime.datetime(2019, 12, 2, 13, 30)],
+                [datetime.datetime(2019, 12, 2, 17, 30), datetime.datetime(2019, 12, 2, 20, 30)],
+                [datetime.datetime(2019, 12, 2, 11, 30), datetime.datetime(2019, 12, 2, 15, 30)],
+                [datetime.datetime(2019, 12, 2, 22, 30), datetime.datetime(2019, 12, 2, 23, 30)]
             ],
-            'Asia/Kolkata')#+5:30 GMT : 12:00 to 15:00 
+            'Asia/Kolkata')#+5:30  
+User4 = bro([
+                [datetime.datetime(2019, 12, 2, 4, 0), datetime.datetime(2019, 12, 2, 10, 0)],
+                [datetime.datetime(2019, 12, 2, 11, 0), datetime.datetime(2019, 12, 2, 14, 0)],
+                [datetime.datetime(2019, 12, 2, 15, 0), datetime.datetime(2019, 12, 2, 17, 30)],
+                [datetime.datetime(2019, 12, 2, 19, 0), datetime.datetime(2019, 12, 2, 21, 0)]
+            ],
+            'Asia/Dubai')#+4:00 
 # GMT common time for all the 3 users should be 14:00 to 15:00
 
 # trying to find common time timethrough GMT + 0
@@ -57,6 +72,7 @@ def calculate_clashes(lower, upper):
     except StopIteration:
         clashes.append([lower, upper])
         return
+
 itr = iter([User2,User3])
 base_list = User1.gmt_timedelta
 # print(base_list)
@@ -65,8 +81,10 @@ for rows, col in base_list.iterrows():
 
 # display the common time periods for all the time zones respectively
 # step6 : display the converted zones to respective users 
-for each in clashes:
-    each[0] = start_24_hours + each[0]
-    each[1] = start_24_hours + each[1]
-
-print(clashes)
+if clashes == []:
+    print("No common timming.")
+else:
+    for each in clashes:
+        each[0] = start_24_hours + each[0]
+        each[1] = start_24_hours + each[1]
+    print(clashes)
