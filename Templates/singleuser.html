@@ -1,0 +1,55 @@
+<html>
+    <head>
+    </head>
+    <title>Index Page</title>
+    <body>
+        Hello to the main Page
+        <form action="/", method="POST">
+            {% for i in range(0,users) %}
+                <b><p>User {{ i+1 }} :<br></p></b>
+                <div> 
+                    <select name="timezone{{ i+1 }}" size=7>
+                        {% for timezone in  timezones %}
+                            <option value={{ timezone }}>{{ timezone }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                         <b>From:</b><br>
+                        {% for j in range(0,timeslots) %}
+                            Timeslot {{ j+1 }} : <br>
+                            <span>
+                                <span>
+                                    Date : 
+                                    <input type="number" name="year{{ i+1 }}" placeholder="YYYY" min="2020" max="2030" style="width: 5em">
+                                    <input type="number" name="month{{ i+1 }}" placeholder="MM" min="1" max="12" style="width: 3.5em">
+                                    <input type="number" name="day{{ i+1 }}" placeholder="DD" min="1" max="31" style="width: 3.5em"> 
+                                </span> 
+                                <span>
+                                    Time : 
+                                    <input type="number" name="hour{{ i+1 }}" placeholder="HH" min="0" max="23" style="width: 3.5em">
+                                    <input type="number" name="minute{{ i+1 }}" placeholder="MM" min="0" max="59" style="width: 3.5em"> 
+                                </span>
+                            </span> 
+                            <span>
+                                <span>
+                                    <b>To:</b>
+                                    Date : 
+                                    <input type="number" name="year{{ i+1 }}" placeholder="YYYY" min="2020" max="2030" style="width: 5em">
+                                    <input type="number" name="month{{ i+1 }}" placeholder="MM" min="1" max="12" style="width: 3.5em">
+                                    <input type="number" name="day{{ i+1 }}" placeholder="DD" min="1" max="31" style="width: 3.5em"> 
+                                </span> 
+                                <span>
+                                    Time : 
+                                    <input type="number" name="hour{{ i+1 }}" placeholder="HH" min="0" max="23" style="width: 3.5em">
+                                    <input type="number" name="minute{{ i+1 }}" placeholder="MM" min="0" max="59" style="width: 3.5em"> 
+                                </span>
+                            </span> 
+                            <br>
+                        {% endfor %}
+                </div>
+            {% endfor %}
+            <input type="submit" name="submit" value="Submit">
+        </form>
+    </body>
+</html>
