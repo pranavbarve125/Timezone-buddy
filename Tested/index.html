@@ -1,0 +1,45 @@
+<html>
+    <body onload="pageLoad()">
+        <form>
+            <div id="from">
+                From : 
+                <p>
+                    Select Year :  
+                    <select name="year" class="year" onchange="yearChangeFunction()" placeholder="Year">
+                        <option value="NA" selected>NA</option>
+                    </select>
+                </p>
+                <p>
+                    Select Month : 
+                    <select name="month" class="month" disabled onchange="monthChangeFunction()">
+                    </select>
+                </p>
+                <p>
+                    Select Day : 
+                    <select name="day" class="day" disabled>
+                    </select>
+                </p>
+            </div>
+            <div id="to">
+                To : 
+                <p>
+                    Select Year :  
+                    <select name="year" class="year" onchange="yearChangeFunction()" placeholder="Year">
+                        <option value="NA" selected>NA</option>
+                    </select>
+                </p>
+                <p>
+                    Select Month : 
+                    <select name="month" class="month" disabled onchange="monthChangeFunction()">
+                    </select>
+                </p>
+                <p>
+                    Select Day : 
+                    <select name="day" class="day" disabled>
+                    </select>
+                </p>
+            </div>
+        </form>
+        <script src="interact.js"></script>
+    </body>
+</html>
